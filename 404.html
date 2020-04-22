@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>RGB To Hex</title>
+</head>
+<body>
+<script type="text/javascript">
+	/**
+		formats:
+		+ /rgba(239,239,237,1);
+		+ /rgba(239,239,237,1)
+		+ /color:rgba(239,239,237,1);
+		+ /rgb(239,239,237)
+		+ /rgb(239,239,237);
+		+ /239,239,237,1
+		+ /239,239,237
+		+ /0,0,0
+	*/
+	const splitted = decodeURIComponent(document.location.pathname).replace(/[^\d,]/g, '').split(',');
+	if(!splitted.length) { document.writeln(`Usage as ${document.location.origin}/rgb(239,239,239)`); }
+	const hex = splitted.slice(0,3).map(num=>{
+		const int = parseInt(num, 10);
+		const converted = int.toString(16);
+		return int >= 16 ? converted : '0' + converted;
+	}).join('');
+	document.location.assign('https://www.color-hex.com/color/'+hex);	
+</script>
+</body>
+</html>
